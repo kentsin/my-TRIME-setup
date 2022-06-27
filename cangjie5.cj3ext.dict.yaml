@@ -11,8 +11,6 @@ name: "cangjie5.cj3ext"
 version: "0.1"
 sort: by_weight
 use_preset_vocabulary: true
-# import_tables:
-# - cangjie5
 ...
 
 昨	ahs

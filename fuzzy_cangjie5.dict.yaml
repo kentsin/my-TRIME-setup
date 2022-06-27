@@ -14,5 +14,5 @@ use_preset_vocabulary: true
 import_tables:
  - cangjie5
  - cangjie5.cj3ext
- - sorryIdontKnown
 ...
+
