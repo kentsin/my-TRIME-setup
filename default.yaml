@@ -1,0 +1,28 @@
+# Rime default settings
+# encoding: utf-8
+
+config_version: "0.36"
+
+schema_list:
+  - schema: fuzzy_cangjie5
+  - schema: luna_pinyin
+  - schema: cangjie5
+
+
+switcher:
+  caption: 〔方案選單〕
+  hotkeys:
+    - Control+grave
+    - Control+Shift+grave
+    - F4
+  save_options:
+    - full_shape
+    - ascii_punct
+    - simplification
+    - extended_charset
+  fold_options: true
+  abbreviate_options: true
+  option_list_separator: '／'
+
+menu:
+  page_size: 5
