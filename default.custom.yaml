@@ -6,5 +6,4 @@ customization:
   rime_version: 1.5.3
 patch:
   schema_list:
-    - schema: fuzzy_cangjie5
-#    - schema: luna_pinyin
+    - {schema: fuzzy_cangjie5}
