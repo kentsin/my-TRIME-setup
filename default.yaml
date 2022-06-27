@@ -5,9 +5,6 @@ config_version: "0.36"
 
 schema_list:
   - schema: fuzzy_cangjie5
-  - schema: luna_pinyin
-  - schema: cangjie5
-
 
 switcher:
   caption: 〔方案選單〕
