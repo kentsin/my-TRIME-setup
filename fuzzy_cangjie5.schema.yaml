@@ -1,0 +1,142 @@
+# Rime schema settings
+# encoding: utf-8
+
+schema:
+  schema_id: fuzzy_cangjie5
+  name: 倉頡
+  version: "0.1"
+  author:
+    - 發明人 朱邦復先生
+    - 雪齋加入通配符
+  description: |
+    第五代倉頡輸入法
+    碼表源自倉頡之友發佈的《五倉世紀版》
+    www.chinesecj.com
+    【新】以「z」鍵作通配符，可替代一碼或多碼，取消原「z」鍵符號功能
+#  dependencies:
+#    - luna_pinyin
+
+switches:
+  - name: ascii_mode
+    reset: 0
+    states: [ 中文, 西文 ]
+  - name: full_shape
+    states: [ 半角, 全角 ]
+  - name: simplification
+    states: [ 漢字, 汉字 ]
+  - name: extended_charset
+    states: [ 通用, 增廣 ]
+
+engine:
+  processors:
+    - ascii_composer
+    - recognizer
+    - key_binder
+    - speller
+    - punctuator
+    - selector
+    - navigator
+    - express_editor
+  segmentors:
+    - ascii_segmentor
+    - matcher
+    - abc_segmentor
+    - punct_segmentor
+    - fallback_segmentor
+  translators:
+    - punct_translator
+    - reverse_lookup_translator
+    - script_translator
+  filters:
+    - simplifier
+    - uniquifier
+
+speller:
+  alphabet: zyxwvutsrqponmlkjihgfedcba
+  delimiter: " ;'"
+  max_code_length: 5
+  algebra:
+# 取消符號功能
+    - erase/z.*/
+    - erase/y{3}.*/
+# 單字用單個通配符
+# 通配符在尾
+    - derive/^([a-y])[a-y]{1,4}$/$1z/
+    - derive/^([a-y]{2})[a-y]{1,3}$/$1z/
+    - derive/^([a-y]{3})[a-y]{1,2}$/$1z/
+    - derive/^([a-y]{4})[a-y]$/$1z/
+# 通配符在首
+    - derive/^[a-y]{1,4}([a-y])$/z$1/
+    - derive/^[a-y]{1,3}([a-y]{2})$/z$1/
+    - derive/^[a-y]{1,2}([a-y]{3})$/z$1/
+    - derive/^[a-y]([a-y]{4})$/z$1/
+# 通配符在身，替一碼
+    - derive/^([a-y]{1,3})[a-y]([a-y])$/$1z$2/
+    - derive/^([a-y])[a-y]([a-y]{2,3})$/$1z$2/
+    - derive/^([a-y]{2})[a-y]([a-y]{2})$/$1z$2/
+# 通配符在身，替二碼
+    - derive/^([a-y])[a-y]{2}([a-y]{1,2})$/$1z$2/
+    - derive/^([a-y]{2})[a-y]{2}([a-y])$/$1z$2/
+# 通配符在身，替三碼
+    - derive/^([a-y])[a-y]{3}([a-y])$/$1z$2/
+# 單字用多個通配符
+# 二通配符，在首尾
+    - derive/^[a-y]{1,3}([a-y])[a-y]$/z$1z/
+    - derive/^[a-y]{1,2}([a-y])[a-y]{2}$/z$1z/
+    - derive/^[a-y]([a-y])[a-y]{3}$/z$1z/
+    - derive/^[a-y]([a-y]{3})[a-y]$/z$1z/
+    - derive/^[a-y]{1,2}([a-y]{2})[a-y]$/z$1z/
+    - derive/^[a-y]([a-y]{2})[a-y]{2}$/z$1z/
+# 二通配符，其一在首
+    - derive/^[a-y]{1,2}([a-y])[a-y]([a-y])$/z$1z$2/
+    - derive/^[a-y]([a-y])[a-y]{2}([a-y])$/z$1z$2/
+    - derive/^[a-y]([a-y]{2})[a-y]([a-y])$/z$1z$2/
+    - derive/^[a-y]([a-y])[a-y]([a-y]{2})$/z$1z$2/
+# 二通配符，其一在尾
+    - derive/^([a-y])[a-y]{1,2}([a-y])[a-y]$/$1z$2z/
+    - derive/^([a-y])[a-y]([a-y])[a-y]{2}$/$1z$2z/
+    - derive/^([a-y]{2})[a-y]([a-y])[a-y]$/$1z$2z/
+    - derive/^([a-y])[a-y]([a-y]{2})[a-y]$/$1z$2z/
+# 二通配符，不在首尾
+    - derive/^([a-y])[a-y]([a-y])[a-y]([a-y])$/$1z$2z$3/
+# 三通配符
+    - derive/^[a-y]([a-y])[a-y]([a-y])[a-y]$/z$1z$2z/
+
+translator:
+  dictionary: fuzzy_cangjie5
+  enable_charset_filter: true
+  preedit_format:
+    - xform/^([a-z ]*)$/$1｜\U$1\E/
+    - "xlit|ABCDEFGHIJKLMNOPQRSTUVWXYZ|日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜重|"
+  comment_format:
+    - "xlit|abcdefghijklmnopqrstuvwxyz~|日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜重～|"
+  disable_user_dict_for_patterns:
+    - "^z.*$"
+    - "^yyy.*$"
+
+abc_segmentor:
+  extra_tags:
+    - reverse_lookup
+
+#reverse_lookup:
+#  dictionary: luna_pinyin
+#  prefix: "`"
+#  suffix: "'"
+#  tips: 〔拼音〕
+#  preedit_format:
+#    - xform/([nl])v/$1ü/
+#    - xform/([nl])ue/$1üe/
+#    - xform/([jqxy])v/$1u/
+#  comment_format:
+#    - "xlit|abcdefghijklmnopqrstuvwxyz|日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜重|"
+
+punctuator:
+  import_preset: default
+
+key_binder:
+  import_preset: default
+
+recognizer:
+  import_preset: default
+  patterns:
+    reverse_lookup: "`[a-z]*'?$"

@@ -1,0 +1,29 @@
+# encoding: utf-8
+#
+# Author: Kentsin <kentsin@gmail.com>
+# Some ac hoc code for I dont known 
+# License: LGPLv3
+#
+
+---
+name: "sorryIdontKnown"
+version: "0.1"
+sort: by_weight
+use_preset_vocabulary: true
+...
+
+凹	bbu
+凸	bu
+廌	if
+甴	lw
+卍	j
+凳	nomru
+〇	o
+𠂔	sis
+薦	tif
+韀	tjif
+囧	wcr
+囧	wor
+牆	wall
+窗	window
+曱	wl
