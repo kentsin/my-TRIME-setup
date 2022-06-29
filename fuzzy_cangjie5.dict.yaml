@@ -5,6 +5,7 @@
 # 該些碼表源於 chinesecj.com (倉頡之友‧馬來西亞)
 # License: LGPLv3
 #
+# 在 sorryIdontKnown.dict.yaml 可加入自己的編碼
 
 ---
 name: "cangjie5.cj3ext"
