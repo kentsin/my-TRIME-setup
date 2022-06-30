@@ -1262,7 +1262,7 @@ preset_keyboards:
     - {label: '戈', click: 'i', long_click: '*', swipe_up: 8}
     - {label: '人', click: 'o', long_click: '(){Left}', swipe_up: 9}
     - {label: '心', click: 'p', long_click: 'Hide', swipe_up: 0}
-    - {long_click: '──', click: '×', width: 5}
+    - {long_click: '–', click: '×', width: 5}
     - {label: '日', click: 'a', long_click: select_all, swipe_left: Left, swipe_right: Right, swipe_up: Up, swipe_down: Down}
     - {label: '尸', click: 's', long_click: '~', swipe_left: Home, swipe_right: End, swipe_up: Page_Up, swipe_down: Page_Down}
     - {label: '木', click: 'd', long_click: '-', swipe_down: '_'}
